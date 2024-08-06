@@ -28,8 +28,10 @@ class PennantTool extends ResourceTool
 
     /**
      * Get the component name for the resource tool.
+     *
+     * @return string
      */
-    public function component(): string
+    public function toolComponent(): string
     {
         return 'nova-pennant-tool';
     }

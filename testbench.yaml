@@ -1,8 +1,10 @@
 providers:
   - Laravel\Nova\NovaCoreServiceProvider
   - Workbench\App\Providers\NovaServiceProvider
+  - Workbench\App\Providers\WorkbenchServiceProvider
 
-migrations: true
+migrations:
+  - workbench/database/migrations
 
 seeders:
   - Workbench\Database\Seeders\DatabaseSeeder
@@ -18,7 +20,9 @@ workbench:
     - migrate:refresh
   assets:
     - nova-assets
-  sync: []
+  sync:
+    - from: dist
+      to: public/vendor/nova-pennant-tool
 
 purge:
   directories:
