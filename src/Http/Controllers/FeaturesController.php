@@ -5,8 +5,8 @@ namespace Laravel\Nova\PennantTool\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Str;
-use Laravel\Nova\Metrics\MetricTableRow;
 use Laravel\Nova\Nova;
+use Laravel\Nova\PennantTool\FeatureTableRow;
 use Laravel\Pennant\Feature;
 
 class FeaturesController
@@ -17,14 +17,9 @@ class FeaturesController
     public function __invoke(Request $request): Collection
     {
         return Collection::make(Feature::for(Nova::user($request))->all())
-            ->map(function ($value, $feature) {
-                return MetricTableRow::make()
-                    ->title(Str::headline($feature));
-
-                // return [$feature => [
-                //     'name' => Str::headline($feature),
-                //     'value' => $value,
-                // ]];
-            })->values();
+            ->map(fn ($value, $feature) => FeatureTableRow::make(
+                title: class_exists($feature) ? $feature : Str::headline($feature),
+                value: $value,
+            ))->values();
     }
 }

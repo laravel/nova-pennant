@@ -9,11 +9,11 @@
         v-if="value.length > 0"
         class="overflow-hidden overflow-x-auto relative"
       >
-        <table class="w-full table-default">
+        <table class="w-full table-default font-normal">
           <tbody
             class="border-t border-b border-gray-100 dark:border-gray-700 divide-y divide-gray-100 dark:divide-gray-700"
           >
-            <MetricTableRow v-for="row in value" :row="row" />
+            <TableRow v-for="row in value" :row="row" />
           </tbody>
         </table>
       </div>
@@ -27,7 +27,13 @@
 </template>
 
 <script>
+import TableRow from './TableRow'
+
 export default {
+  components: {
+    TableRow,
+  },
+
   props: ['resourceName', 'resourceId', 'panel'],
 
   data: () => ({

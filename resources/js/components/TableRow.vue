@@ -1,41 +1,31 @@
 <template>
   <tr class="group">
-    <td
-      v-if="row.icon"
-      class="pl-6 w-8 pr-2"
-      :class="{
-        [row.iconClass]: true,
-        [rowClasses]: true,
-        'text-gray-400 dark:text-gray-600': !row.iconClass,
-      }"
-    >
-      <Icon :name="row.icon" class="inline-block" />
+    <td class="pl-6 w-8 pr-2 py-2 text-gray-400 dark:text-gray-600">
+      <IconBoolean :value="isActive" />
     </td>
 
-    <td
-      class="px-2"
-      :class="{
-        [rowClasses]: true,
-        'pl-6': !row.icon,
-        'pr-6': !row.editUrl || !row.viewUrl,
-      }"
-    >
-      <h2 class="text-base text-gray-500">
-        {{ row.title }}
-      </h2>
-      <p class="text-gray-400 text-xs truncate">{{ row.subtitle }}</p>
+    <td class="p-2">
+      <p class="text-gray-500 truncate">{{ row.title }}</p>
     </td>
 
-    <td
-      v-if="row.actions.length > 0"
-      class="text-right pr-4"
-      :class="rowClasses"
-    >
+    <td class="text-right pr-4 py-2">
+      <span v-if="!isBooleanValue">
+        <code>{{ row.value }}</code>
+      </span>
+    </td>
+
+    <td class="text-right pr-4 py-2">
       <div class="flex justify-end items-center text-gray-400">
         <Button
-          icon="ellipsis-horizontal"
-          variant="action"
-          :aria-label="__('Resource Row Dropdown')"
+          v-if="row.value === true"
+          variant="link"
+          :label="__('Deactivate')"
+          destructive
+        />
+        <Button
+          v-else-if="row.value === false"
+          variant="link"
+          :label="__('Activate')"
         />
       </div>
     </td>
@@ -43,15 +33,12 @@
 </template>
 
 <script>
-import { Button, Icon } from 'laravel-nova-ui'
-import isNull from 'lodash/isNull'
-import omitBy from 'lodash/omitBy'
+import { Button } from 'laravel-nova-ui'
+import isBoolean from 'lodash/isBoolean'
 
 export default {
   components: {
     Button,
-    Icon,
-    Heroicon,
   },
 
   props: {
@@ -62,8 +49,12 @@ export default {
   },
 
   computed: {
-    rowClasses() {
-      return ['py-2']
+    isActive() {
+      return this.row.value !== false
+    },
+
+    isBooleanValue() {
+      return isBoolean(this.row.value)
     },
   },
 }
