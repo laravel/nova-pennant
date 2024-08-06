@@ -1,0 +1,79 @@
+{
+    "name": "laravel/nova-pennant",
+    "type": "library",
+    "keywords": [
+        "laravel",
+        "laravel-nova",
+        "laravel-pennant"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Taylor Otwell",
+            "email": "taylor@laravel.com"
+        },
+        {
+            "name": "Mior Muhammad Zaki",
+            "email": "mior@laravel.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Laravel\\Nova\\PennantTool\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Laravel\\Nova\\PennantTool\\Tests\\": "tests/",
+            "Workbench\\App\\": "workbench/app/",
+            "Workbench\\Database\\Factories\\": "workbench/database/factories/",
+            "Workbench\\Database\\Seeders\\": "workbench/database/seeders/"
+        }
+    },
+    "require": {
+        "php": "^8.1",
+        "illuminate/support": "^10.0|^11.0",
+        "laravel/pennant": "^1.11"
+    },
+    "require-dev": {
+        "larastan/larastan": "^2.4",
+        "laravel/nova": "dev-develop",
+        "laravel/nova-devtool": "^1.0",
+        "laravel/pint": "^1.17",
+        "orchestra/testbench": "^8.24|^9.2",
+        "phpstan/phpstan": "^1.11"
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/laravel/nova"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/laravel/nova-devtool"
+        }
+    ],
+    "config": {
+        "sort-packages": true
+    },
+    "prefer-stable": true,
+    "minimum-stability": "dev",
+    "scripts": {
+        "post-autoload-dump": [
+            "@clear",
+            "@prepare"
+        ],
+        "clear": "@php vendor/bin/testbench package:purge-skeleton --ansi",
+        "prepare": "@php vendor/bin/testbench package:discover --ansi",
+        "build": "@php vendor/bin/testbench workbench:build --ansi",
+        "serve": [
+            "Composer\\Config::disableProcessTimeout",
+            "@build",
+            "@php vendor/bin/testbench serve"
+        ],
+        "lint": [
+            "@php vendor/bin/pint",
+            "@php vendor/bin/phpstan analyse"
+        ]
+    }
+}
