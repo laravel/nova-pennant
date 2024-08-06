@@ -33,7 +33,7 @@
     "require": {
         "php": "^8.1",
         "illuminate/support": "^10.0|^11.0",
-        "laravel/pennant": "^1.11"
+        "laravel/pennant": "^1.10"
     },
     "require-dev": {
         "larastan/larastan": "^2.4",
@@ -56,8 +56,13 @@
     "config": {
         "sort-packages": true
     },
-    "prefer-stable": true,
-    "minimum-stability": "dev",
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Laravel\\Nova\\PennantTool\\ToolServiceProvider"
+            ]
+        }
+    },
     "scripts": {
         "post-autoload-dump": [
             "@clear",
@@ -73,7 +78,9 @@
         ],
         "lint": [
             "@php vendor/bin/pint",
-            "@php vendor/bin/phpstan analyse"
+            "@php vendor/bin/phpstan analyse --verbose"
         ]
-    }
+    },
+    "prefer-stable": true,
+    "minimum-stability": "dev"
 }

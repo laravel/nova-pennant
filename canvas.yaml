@@ -1,0 +1,27 @@
+preset: package
+
+namespace: Laravel\Nova\PennantTool
+user-auth-model: App\Models\User
+
+paths:
+  src: src
+  resource: resources
+
+factory:
+  path: database/factories
+
+migration:
+  path: database/migrations
+  prefix: ''
+
+console:
+  namespace: Laravel\Nova\PennantTool\Console
+
+model:
+  namespace: Laravel\Nova\PennantTool\Models
+
+provider:
+  namespace: Laravel\Nova\PennantTool
+
+testing:
+  namespace: Laravel\Nova\PennantTool\Tests
