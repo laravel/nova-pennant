@@ -7,7 +7,7 @@
     modal-style="window"
   >
     <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden">
-      <ModalHeader v-text="__('Configures Feature')" />
+      <ModalHeader v-text="__('Configure :name Feature', {name: feature.title })" />
       <ModalContent>
         <form
           ref="theForm"
@@ -35,8 +35,7 @@
             ref="confirmButton"
             dusk="confirm-configures-feature-button"
             :loading="working"
-            state="danger"
-            :label="__('Delete')"
+            :label="__('Update')"
           />
         </div>
       </ModalFooter>
@@ -45,6 +44,7 @@
 </template>
 
 <script setup>
+import { ref } from 'vue'
 import { Button } from 'laravel-nova-ui'
 import { useLocalization } from 'laravel-nova'
 
@@ -56,6 +56,8 @@ const props = defineProps({
 const emitter = defineEmits(['confirm', 'close'])
 
 const { __ } = useLocalization()
+
+const working = ref(false)
 
 const submit = () => {}
 </script>

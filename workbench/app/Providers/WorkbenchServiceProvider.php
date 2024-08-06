@@ -36,7 +36,5 @@ class WorkbenchServiceProvider extends ServiceProvider
         Feature::define('new-api', fn (User $user) => in_array($user->email, [
             'nova@laravel.com',
         ]));
-
-        ray(Feature::name('purchase-button'));
     }
 }
