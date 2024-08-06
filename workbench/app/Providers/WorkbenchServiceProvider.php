@@ -2,6 +2,7 @@
 
 namespace Workbench\App\Providers;
 
+use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Pennant\Feature;
@@ -14,7 +15,11 @@ class WorkbenchServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        Relation::morphMap([
+            'user' => User::class,
+        ]);
+
+        Feature::useMorphMap();
     }
 
     /**

@@ -5,57 +5,51 @@
     </td>
 
     <td class="p-2">
-      <p class="text-gray-500 truncate">{{ row.title }}</p>
+      <p class="text-gray-500 truncate">{{ feature.title }}</p>
     </td>
 
     <td class="text-right pr-4 py-2">
-      <span v-if="!isBooleanValue">
-        <code>{{ row.value }}</code>
+      <span v-if="isRichFeature">
+        <code>{{ feature.value }}</code>
       </span>
     </td>
 
     <td class="text-right pr-4 py-2">
       <div class="flex justify-end items-center text-gray-400">
-        <Button
-          v-if="row.value === true"
-          variant="link"
-          :label="__('Deactivate')"
-          destructive
-        />
-        <Button
-          v-else-if="row.value === false"
-          variant="link"
-          :label="__('Activate')"
-        />
+        <ConfirmsPassword
+          @confirmed="showConfiguresModal = true"
+          required
+        >
+          <Button
+            variant="ghost"
+            icon="cog-8-tooth"
+            :aria-label="__('Configure')"
+          />
+        </ConfirmsPassword>
       </div>
+
+      <ConfiguresFeatureModal 
+        :show="showConfiguresModal"
+        :feature="feature" 
+        @close="showConfiguresModal = false"
+        role="dialog"
+      />
     </td>
   </tr>
 </template>
 
-<script>
+<script setup>
+import { computed, ref } from 'vue'
 import { Button } from 'laravel-nova-ui'
-import isBoolean from 'lodash/isBoolean'
+import ConfiguresFeatureModal from './ConfiguresFeatureModal'
+import isString from 'lodash/isString'
 
-export default {
-  components: {
-    Button,
-  },
+const props = defineProps({
+  feature: { type: Object, required: true },
+})
 
-  props: {
-    row: {
-      type: Object,
-      required: true,
-    },
-  },
+const showConfiguresModal = ref(false)
 
-  computed: {
-    isActive() {
-      return this.row.value !== false
-    },
-
-    isBooleanValue() {
-      return isBoolean(this.row.value)
-    },
-  },
-}
+const isActive = computed(() => props.feature.value !== false)
+const isRichFeature = computed(() => isString(props.feature.value))
 </script>

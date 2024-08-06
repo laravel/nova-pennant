@@ -6,14 +6,18 @@
 
     <div class="mb-5 pb-4">
       <div
-        v-if="value.length > 0"
+        v-if="features.length > 0"
         class="overflow-hidden overflow-x-auto relative"
       >
         <table class="w-full table-default font-normal">
           <tbody
             class="border-t border-b border-gray-100 dark:border-gray-700 divide-y divide-gray-100 dark:divide-gray-700"
           >
-            <TableRow v-for="row in value" :row="row" />
+            <TableRow 
+              v-for="(feature, index) in features" 
+              :key="index"
+              :feature="feature" 
+            />
           </tbody>
         </table>
       </div>
@@ -26,32 +30,28 @@
   </LoadingCard>
 </template>
 
-<script>
+<script setup>
+import { ref, onMounted } from 'vue'
 import TableRow from './TableRow'
+import { useLocalization } from 'laravel-nova'
 
-export default {
-  components: {
-    TableRow,
-  },
+const props = defineProps([
+  'resource', 
+  'resourceName', 
+  'resourceId', 
+  'panel'
+])
 
-  props: ['resourceName', 'resourceId', 'panel'],
+const { __ } = useLocalization()
 
-  data: () => ({
-    loading: true,
-    value: [],
-  }),
+const loading = ref(true)
+const features = ref([])
 
-  mounted() {
-    console.log(JSON.parse(JSON.stringify(this.panel)))
-
-    this.loading = false
-
-    Nova.request().get('/nova-vendor/user-pennant-features').then(response => {
-      this.value = response.data
-      Nova.debug(this.value)
-    }).finally(() => {
-      this.loading = false
-    })
-  },
-}
+onMounted(() => {
+  Nova.request().get('/nova-vendor/user-pennant-features').then(response => {
+    features.value = response.data
+  }).finally(() => {
+    loading.value = false
+  })
+})
 </script>
