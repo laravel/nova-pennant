@@ -2,14 +2,12 @@
 
 namespace Laravel\Nova\PennantTool;
 
-use Illuminate\Http\Request;
 use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Support\Str;
 use Laravel\Nova\Events\ServingNova;
 use Laravel\Nova\Nova;
-use Laravel\Pennant\Feature;
+use Laravel\Nova\PennantTool\Http\Controllers\FeaturesController;
 
 class ToolServiceProvider extends ServiceProvider
 {
@@ -24,7 +22,6 @@ class ToolServiceProvider extends ServiceProvider
 
         Nova::serving(function (ServingNova $event) {
             Nova::remoteScript(mix('tool.js', 'vendor/nova-pennant-tool'));
-            Nova::remoteStyle(mix('tool.css', 'vendor/nova-pennant-tool'));
         });
 
         $this->publishes([
@@ -43,15 +40,7 @@ class ToolServiceProvider extends ServiceProvider
 
         Route::middleware(config('nova.api_middleware', []))
             ->group(function (Router $router) {
-                $router->get('/nova-vendor/user-pennant-features', function (Request $request) {
-                    return collect(Feature::for(Nova::user($request))->all())
-                        ->mapWithKeys(function ($value, $feature) {
-                            return [$feature => [
-                                'name' => Str::headline($feature),
-                                'value' => $value,
-                            ]];
-                        });
-                });
+                $router->get('/nova-vendor/user-pennant-features', FeaturesController::class);
             });
     }
 
