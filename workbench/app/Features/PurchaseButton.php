@@ -3,7 +3,6 @@
 namespace Workbench\App\Features;
 
 use Illuminate\Support\Arr;
-use Illuminate\Support\Lottery;
 
 class PurchaseButton
 {

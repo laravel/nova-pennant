@@ -3,7 +3,6 @@
 namespace Workbench\App\Providers;
 
 use Illuminate\Foundation\Auth\User;
-use Illuminate\Support\Arr;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Pennant\Feature;
 use Workbench\App\Features\PurchaseButton;

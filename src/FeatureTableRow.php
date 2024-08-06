@@ -4,8 +4,7 @@ namespace Laravel\Nova\PennantTool;
 
 use JsonSerializable;
 use Laravel\Nova\Makeable;
-use Laravel\Nova\WithIcon;
-use Stringable;
+use Laravel\Nova\Nova;
 
 /**
  * @method static static make(bool|string $value)
@@ -15,10 +14,12 @@ class FeatureTableRow implements JsonSerializable
     use Makeable;
 
     /**
-     * Construct a new table row.=
+     * Construct a new table row.
+     *
+     * @param  class-string|string  $feature
      */
     public function __construct(
-        public Stringable|string $title,
+        public string $feature,
         public bool|string $value
     ) {
         //
@@ -32,7 +33,8 @@ class FeatureTableRow implements JsonSerializable
     public function jsonSerialize(): array
     {
         return [
-            'title' => $this->title,
+            'feature' => $this->feature,
+            'title' => Nova::humanize($this->feature),
             'value' => $this->value,
         ];
     }
