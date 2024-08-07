@@ -2,9 +2,12 @@
 
 namespace Laravel\Nova\PennantTool;
 
+use Closure;
+use Illuminate\Support\Lottery;
 use JsonSerializable;
 use Laravel\Nova\Makeable;
 use Laravel\Nova\Nova;
+use Laravel\Pennant\Feature;
 
 /**
  * @method static static make(bool|string $value)
@@ -26,6 +29,31 @@ class FeatureTableRow implements JsonSerializable
     }
 
     /**
+     * Get feature informations.
+     *
+     * @return array{type: string, options: array|bool}
+     */
+    public function meta(): array
+    {
+        $instance = Feature::instance($this->feature);
+
+        $type = match (true) {
+            $instance instanceof Lottery => 'lottery',
+            $instance instanceof Closure => 'closure',
+            default => 'class',
+        };
+
+        return [
+            'type' => $type,
+            'options' => match (true) {
+                is_bool($this->value) => true,
+                $type === 'class' && method_exists($instance, 'options') => $instance->options(),
+                default => false,
+            },
+        ];
+    }
+
+    /**
      * Prepare the metric row for JSON serialization.
      *
      * @return array<string, mixed>
@@ -36,6 +64,7 @@ class FeatureTableRow implements JsonSerializable
             'feature' => $this->feature,
             'title' => Nova::humanize($this->feature),
             'value' => $this->value,
+            'meta' => $this->meta(),
         ];
     }
 }

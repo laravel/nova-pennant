@@ -18,17 +18,19 @@
       <div class="flex justify-end items-center text-gray-400">
         <ConfirmsPassword
           @confirmed="showConfiguresModal = true"
-          required
+          :required="feature.meta.options !== false"
         >
           <Button
             variant="ghost"
             icon="cog-8-tooth"
             :aria-label="__('Configure')"
+            :disabled="feature.meta.options === false"
           />
         </ConfirmsPassword>
       </div>
 
       <ConfiguresFeatureModal 
+        v-if="feature.meta.options !== false"
         :show="showConfiguresModal"
         :feature="feature" 
         @close="showConfiguresModal = false"
