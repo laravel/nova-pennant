@@ -47,7 +47,9 @@ class FeatureTableRow implements JsonSerializable
             'type' => $type,
             'options' => match (true) {
                 is_bool($this->value) => true,
-                $type === 'class' && method_exists($instance, 'options') => $instance->options(),
+                $type === 'class' && method_exists($instance, 'options') => collect($instance->options())
+                    ->map(fn ($value) => ['label' => $value, 'value' => $value])
+                    ->all(),
                 default => false,
             },
         ];
@@ -61,7 +63,7 @@ class FeatureTableRow implements JsonSerializable
     public function jsonSerialize(): array
     {
         return [
-            'feature' => $this->feature,
+            'key' => $this->feature,
             'title' => Nova::humanize($this->feature),
             'value' => $this->value,
             'meta' => $this->meta(),

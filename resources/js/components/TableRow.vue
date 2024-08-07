@@ -33,6 +33,9 @@
         v-if="!readonly && feature.meta.options !== false"
         :show="showConfiguresModal"
         :feature="feature" 
+        :resource-name="resourceName"
+        :resource-id="resourceId"
+        @confirm="featureConfigured"
         @close="showConfiguresModal = false"
         role="dialog"
       />
@@ -46,13 +49,22 @@ import { Button } from 'laravel-nova-ui'
 import ConfiguresFeatureModal from './ConfiguresFeatureModal'
 import isString from 'lodash/isString'
 
+const emitter = defineEmits(['updated'])
+
 const props = defineProps({
   feature: { type: Object, required: true },
   readonly: { type: Boolean, default: true },
+  resourceName: { type: String, required: true },
+  resourceId: { type: Number|String, required: true },
 })
 
 const showConfiguresModal = ref(false)
 
 const isActive = computed(() => props.feature.value !== false)
 const isRichFeature = computed(() => isString(props.feature.value))
+
+const featureConfigured = () => {
+  emitter('updated')
+  showConfiguresModal.value = false
+}
 </script>

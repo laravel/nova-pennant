@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Nova\Events\ServingNova;
 use Laravel\Nova\Nova;
-use Laravel\Nova\PennantTool\Http\Controllers\FeaturesController;
+use Laravel\Nova\PennantTool\Http\Controllers;
 
 class ToolServiceProvider extends ServiceProvider
 {
@@ -40,7 +40,9 @@ class ToolServiceProvider extends ServiceProvider
 
         Route::middleware(config('nova.api_middleware', []))
             ->group(function (Router $router) {
-                $router->get('/nova-vendor/user-pennant-features', FeaturesController::class);
+                $router->get('/nova-vendor/pennant-features/{resource}/{resourceId}', Controllers\FeaturesController::class);
+                $router->post('/nova-vendor/pennant-features/{resource}/{resourceId}/activate', Controllers\ActivateFeatureController::class);
+                $router->post('/nova-vendor/pennant-features/{resource}/{resourceId}/deactivate', Controllers\DeactivateFeatureController::class);
             });
     }
 

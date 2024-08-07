@@ -18,6 +18,9 @@
               :key="index"
               :feature="feature" 
               :readonly="panel.readonly"
+              :resource-name="resourceName"
+              :resource-id="resourceId"
+              @updated="fetch"
             />
           </tbody>
         </table>
@@ -48,13 +51,13 @@ const { __ } = useLocalization()
 const loading = ref(true)
 const features = ref([])
 
-onMounted(() => {
-  Nova.request().get('/nova-vendor/user-pennant-features').then(response => {
+const fetch = () => {
+  Nova.request().get(`/nova-vendor/pennant-features/${props.resourceName}/${props.resourceId}`).then(response => {
     features.value = response.data
   }).finally(() => {
     loading.value = false
   })
+}
 
-  console.log(props.panel)
-})
+onMounted(() => fetch())
 </script>
