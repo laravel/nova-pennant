@@ -2,6 +2,8 @@
 
 namespace Laravel\Nova\PennantTool;
 
+use Closure;
+use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\ResourceTool;
 
 class PennantTool extends ResourceTool
@@ -16,6 +18,8 @@ class PennantTool extends ResourceTool
         $this->name = $name;
 
         parent::__construct();
+
+        $this->readonly(false);
     }
 
     /**
@@ -32,5 +36,18 @@ class PennantTool extends ResourceTool
     public function toolComponent(): string
     {
         return 'nova-pennant-tool';
+    }
+
+    /**
+     * Set the callback used to determine if the resource tool is readonly.
+     *
+     * @param  (\Closure(\Laravel\Nova\Http\Requests\NovaRequest):(bool))|bool  $callback
+     * @return $this
+     */
+    public function readonly(Closure|bool $callback = true)
+    {
+        $this->withMeta(['readonly' => $callback]);
+
+        return $this;
     }
 }

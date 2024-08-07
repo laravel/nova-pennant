@@ -17,6 +17,7 @@
               v-for="(feature, index) in features" 
               :key="index"
               :feature="feature" 
+              :readonly="panel.readonly"
             />
           </tbody>
         </table>
@@ -53,5 +54,7 @@ onMounted(() => {
   }).finally(() => {
     loading.value = false
   })
+
+  console.log(props.panel)
 })
 </script>

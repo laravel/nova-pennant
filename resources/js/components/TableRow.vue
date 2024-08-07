@@ -18,19 +18,19 @@
       <div class="flex justify-end items-center text-gray-400">
         <ConfirmsPassword
           @confirmed="showConfiguresModal = true"
-          :required="feature.meta.options !== false"
+          :required="!readonly && feature.meta.options !== false"
         >
           <Button
             variant="ghost"
             icon="cog-8-tooth"
             :aria-label="__('Configure')"
-            :disabled="feature.meta.options === false"
+            :disabled="readonly || feature.meta.options === false"
           />
         </ConfirmsPassword>
       </div>
 
       <ConfiguresFeatureModal 
-        v-if="feature.meta.options !== false"
+        v-if="!readonly && feature.meta.options !== false"
         :show="showConfiguresModal"
         :feature="feature" 
         @close="showConfiguresModal = false"
@@ -48,6 +48,7 @@ import isString from 'lodash/isString'
 
 const props = defineProps({
   feature: { type: Object, required: true },
+  readonly: { type: Boolean, default: true },
 })
 
 const showConfiguresModal = ref(false)
