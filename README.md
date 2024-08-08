@@ -77,7 +77,7 @@ PennantTool::make()
 
 In order to configure rich values Nova would need to depends on class based feature and utilise `options()` method:
 
-```php
+```diff
 namespace App\Features;
 
 class UserTier 
