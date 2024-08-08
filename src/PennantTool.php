@@ -50,4 +50,17 @@ class PennantTool extends ResourceTool
 
         return $this;
     }
+
+    /**
+     * Set the callback used to determine if the resource tool requires confirm password.
+     *
+     * @param  (\Closure(\Laravel\Nova\Http\Requests\NovaRequest):(bool))|bool  $callback
+     * @return $this
+     */
+    public function requiresConfirmPassword(Closure|bool $callback = true)
+    {
+        $this->withMeta(['requiresConfirmPassword' => $callback]);
+
+        return $this;
+    }
 }

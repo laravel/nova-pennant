@@ -17,20 +17,21 @@
     <td class="text-right pr-4 py-2">
       <div class="flex justify-end items-center text-gray-400">
         <ConfirmsPassword
+          v-if="authorizedToRun"
           @confirmed="showConfiguresModal = true"
-          :required="authorizedToRun && feature.meta.options !== false"
+          :required="requiresConfirmPassword"
         >
           <Button
             variant="ghost"
             icon="cog-8-tooth"
             :aria-label="__('Configure')"
-            :disabled="!authorizedToRun || feature.meta.options === false"
+            :disabled="!authorizedToRun"
           />
         </ConfirmsPassword>
       </div>
 
       <Modal
-        v-if="authorizedToRun && feature.meta.options !== false"
+        v-if="authorizedToRun"
         :show="showConfiguresModal"
         :feature="feature" 
         :resource-name="resourceName"
@@ -53,7 +54,7 @@ const emitter = defineEmits(['updated'])
 
 const props = defineProps({
   feature: { type: Object, required: true },
-  authorizedToRun: { type: Boolean, default: true },
+  panel: { type: Object, required: true },
   resourceName: { type: String, required: true },
   resourceId: { type: Number|String, required: true },
 })
@@ -62,6 +63,18 @@ const showConfiguresModal = ref(false)
 
 const isActive = computed(() => props.feature.value !== false)
 const isRichFeature = computed(() => isString(props.feature.value))
+const authorizedToRun = computed(() => props.panel?.authorizedToRun ?? true)
+const requiresConfirmPassword = computed(() => {
+  const requiresConfirmation = props.panel?.requiresConfirmPassword ?? false
+
+  if (props.feature.meta.options === false || requiresConfirmation === false) {
+    return false
+  } else if (authorizedToRun.value === false) {
+    return false
+  }
+
+  return true
+})
 
 const featureConfigured = () => {
   emitter('updated')

@@ -17,7 +17,7 @@
               v-for="(feature, index) in features" 
               :key="index"
               :feature="feature" 
-              :authorized-to-run="panel.authorizedToRun"
+              :panel="panel"
               :resource-name="resourceName"
               :resource-id="resourceId"
               @updated="fetch"
