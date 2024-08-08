@@ -63,7 +63,6 @@
 import { computed, reactive, ref } from 'vue'
 import { Button } from 'laravel-nova-ui'
 import { useLocalization } from 'laravel-nova'
-import map from 'lodash/map'
 
 const props = defineProps({
   show: { type: Boolean, default: false },
@@ -93,7 +92,7 @@ const buttonLabel = computed(() => {
   }
 })
 const featureOptions = computed(() => {
-  return map(props.feature.meta.options, option => {
+  return props.feature.meta.options.map(option => {
     return {label: option, value: option}
   })
 })
