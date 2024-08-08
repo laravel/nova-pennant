@@ -72,3 +72,20 @@ use Laravel\Nova\PennantTool\PennantTool;
 PennantTool::make()
     ->requiresConfirmPassword(),
 ```
+
+### Rich Feature Values
+
+In order to configure rich values Nova would need to depends on class based feature and utilise `options()` method:
+
+```php
+namespace App\Features;
+
+class UserTier 
+{
+    public $name = 'user-tier';
+
++   public function options(): array 
++   {
++      return ['solo', 'pro'];
++   }
+}
