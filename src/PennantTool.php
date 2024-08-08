@@ -4,7 +4,9 @@ namespace Laravel\Nova\PennantTool;
 
 use Closure;
 use Laravel\Nova\Http\Requests\NovaRequest;
+use Laravel\Nova\Nova;
 use Laravel\Nova\ResourceTool;
+use Stringable;
 
 class PennantTool extends ResourceTool
 {
@@ -15,19 +17,17 @@ class PennantTool extends ResourceTool
      */
     public function __construct(?string $name = null)
     {
-        $this->name = $name;
+        $this->name = $name ?? Nova::__('Features');
 
         parent::__construct();
-
-        $this->readonly(false);
     }
 
     /**
      * Get the displayable name of the resource tool.
      */
-    public function name(): string
+    public function name(): Stringable|string
     {
-        return $this->name ?? 'Features';
+        return $this->name;
     }
 
     /**

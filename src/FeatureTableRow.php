@@ -10,7 +10,7 @@ use Laravel\Nova\Nova;
 use Laravel\Pennant\Feature;
 
 /**
- * @method static static make(bool|string $value)
+ * @method static static make(string $feature, bool|string $value)
  */
 class FeatureTableRow implements JsonSerializable
 {
@@ -47,9 +47,7 @@ class FeatureTableRow implements JsonSerializable
             'type' => $type,
             'options' => match (true) {
                 is_bool($this->value) => true,
-                $type === 'class' && method_exists($instance, 'options') => collect($instance->options())
-                    ->map(fn ($value) => ['label' => $value, 'value' => $value])
-                    ->all(),
+                $type === 'class' && method_exists($instance, 'options') =>$instance->options(),
                 default => false,
             },
         ];

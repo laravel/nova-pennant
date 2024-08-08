@@ -28,7 +28,7 @@
             <SelectControl
               :selected="feature.value"
               @update:selected="form.value = $event"
-              :options="feature.meta.options"
+              :options="featureOptions"
             />
           </template>
         </ModalContent>
@@ -63,6 +63,7 @@
 import { computed, reactive, ref } from 'vue'
 import { Button } from 'laravel-nova-ui'
 import { useLocalization } from 'laravel-nova'
+import map from 'lodash/map'
 
 const props = defineProps({
   show: { type: Boolean, default: false },
@@ -91,6 +92,12 @@ const buttonLabel = computed(() => {
     return 'Deactivate'
   }
 })
+const featureOptions = computed(() => {
+  return map(props.feature.meta.options, option => {
+    return {label: option, value: option}
+  })
+})
+
 
 const submit = () => {
   working.value = true
