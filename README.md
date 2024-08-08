@@ -45,7 +45,9 @@ public function fields(NovaRequest $request)
 }
 ```
 
-### Authorization to Activate or Deactive Features
+## Usage
+
+### Authorization to Modify Feature Values
 
 By default Nova user will not have access to activate or deactive features when user are authorized to see the resource. You need to use `canRun()` method to authorized all or specific users.
 
@@ -60,7 +62,7 @@ PennantTool::make()
     ->canRun((NovaRequest $request) => Nova::user($request)->admin),
 ```
 
-### Password Confirmations
+### Password Confirmation
 
 You can also requires user to confirm their password before activating or deactivating a feature by using `requiresConfirmPassword()` method:
 
