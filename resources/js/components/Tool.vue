@@ -17,7 +17,7 @@
               v-for="(feature, index) in features" 
               :key="index"
               :feature="feature" 
-              :readonly="panel.readonly"
+              :authorized-to-run="panel.authorizedToRun"
               :resource-name="resourceName"
               :resource-id="resourceId"
               @updated="fetch"
@@ -52,6 +52,8 @@ const loading = ref(true)
 const features = ref([])
 
 const fetch = () => {
+  loading.value = true
+
   Nova.request().get(`/nova-vendor/pennant-features/${props.resourceName}/${props.resourceId}`).then(response => {
     features.value = response.data
   }).finally(() => {

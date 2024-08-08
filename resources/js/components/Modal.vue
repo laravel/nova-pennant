@@ -106,6 +106,7 @@ const submit = () => {
   form.post(endpoint)
     .then(() => {
       emitter('confirm')
+      Nova.success(__('The :feature feature has been updated', {feature: props.feature.title }))
     })
     .finally(() => {
       working.value = false

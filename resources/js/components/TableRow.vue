@@ -18,19 +18,19 @@
       <div class="flex justify-end items-center text-gray-400">
         <ConfirmsPassword
           @confirmed="showConfiguresModal = true"
-          :required="!readonly && feature.meta.options !== false"
+          :required="authorizedToRun && feature.meta.options !== false"
         >
           <Button
             variant="ghost"
             icon="cog-8-tooth"
             :aria-label="__('Configure')"
-            :disabled="readonly || feature.meta.options === false"
+            :disabled="!authorizedToRun || feature.meta.options === false"
           />
         </ConfirmsPassword>
       </div>
 
-      <ConfiguresFeatureModal 
-        v-if="!readonly && feature.meta.options !== false"
+      <Modal
+        v-if="authorizedToRun && feature.meta.options !== false"
         :show="showConfiguresModal"
         :feature="feature" 
         :resource-name="resourceName"
@@ -46,14 +46,14 @@
 <script setup>
 import { computed, ref } from 'vue'
 import { Button } from 'laravel-nova-ui'
-import ConfiguresFeatureModal from './ConfiguresFeatureModal'
+import Modal from './Modal'
 import isString from 'lodash/isString'
 
 const emitter = defineEmits(['updated'])
 
 const props = defineProps({
   feature: { type: Object, required: true },
-  readonly: { type: Boolean, default: true },
+  authorizedToRun: { type: Boolean, default: true },
   resourceName: { type: String, required: true },
   resourceId: { type: Number|String, required: true },
 })
