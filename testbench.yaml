@@ -27,4 +27,3 @@ workbench:
 purge:
   directories:
     - lang/*
-    - public/vendor/*
