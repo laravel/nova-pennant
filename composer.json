@@ -1,5 +1,6 @@
 {
     "name": "laravel/nova-pennant",
+    "description": "A Pennant Resource Tool for Laravel Nova",
     "type": "library",
     "keywords": [
         "laravel",
