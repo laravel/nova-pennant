@@ -59,3 +59,16 @@ use Laravel\Nova\PennantTool\PennantTool;
 PennantTool::make()
     ->canRun((NovaRequest $request) => Nova::user($request)->admin),
 ```
+
+### Password Confirmations
+
+You can also requires user to confirm their password before activating or deactivating a feature by using `requiresConfirmPassword()` method:
+
+```php
+use Laravel\Nova\PennantTool\PennantTool;
+
+// ...
+
+PennantTool::make()
+    ->requiresConfirmPassword(),
+```
