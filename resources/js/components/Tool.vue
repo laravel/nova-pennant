@@ -54,7 +54,7 @@ const features = ref([])
 const fetch = () => {
   loading.value = true
 
-  Nova.request().get(`/nova-vendor/pennant-features/${props.resourceName}/${props.resourceId}`).then(response => {
+  Nova.request().get(`/nova-vendor/nova-pennant/${props.resourceName}/${props.resourceId}`).then(response => {
     features.value = response.data
   }).finally(() => {
     loading.value = false

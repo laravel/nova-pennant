@@ -100,8 +100,8 @@ const submit = () => {
   }
 
   const endpoint = form.value === false
-    ? `/nova-vendor/pennant-features/${props.resourceName}/${props.resourceId}/deactivate`
-    : `/nova-vendor/pennant-features/${props.resourceName}/${props.resourceId}/activate`
+    ? `/nova-vendor/nova-pennant/${props.resourceName}/${props.resourceId}/deactivate`
+    : `/nova-vendor/nova-pennant/${props.resourceName}/${props.resourceId}/activate`
 
   form.post(endpoint)
     .then(() => {

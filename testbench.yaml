@@ -22,7 +22,7 @@ workbench:
     - nova-assets
   sync:
     - from: dist
-      to: public/vendor/nova-pennant-tool
+      to: public/vendor/nova-pennant
 
 purge:
   directories:

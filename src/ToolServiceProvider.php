@@ -21,11 +21,11 @@ class ToolServiceProvider extends ServiceProvider
         });
 
         Nova::serving(function (ServingNova $event) {
-            Nova::remoteScript(mix('tool.js', 'vendor/nova-pennant-tool'));
+            Nova::remoteScript(mix('tool.js', 'vendor/nova-pennant'));
         });
 
         $this->publishes([
-            __DIR__.'/../dist' => public_path('vendor/nova-pennant-tool'),
+            __DIR__.'/../dist' => public_path('vendor/nova-pennant'),
         ], ['nova-assets', 'laravel-assets']);
     }
 
@@ -39,7 +39,7 @@ class ToolServiceProvider extends ServiceProvider
         }
 
         Route::middleware(config('nova.api_middleware', []))
-            ->prefix('/nova-vendor/pennant-features')
+            ->prefix('/nova-vendor/nova-pennant')
             ->group(__DIR__.'/../routes/api.php');
     }
 
