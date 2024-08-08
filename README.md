@@ -45,4 +45,17 @@ public function fields(NovaRequest $request)
 }
 ```
 
+### Authorization to Activate or Deactive Features
 
+By default Nova user will not have access to activate or deactive features when user are authorized to see the resource. You need to use `canRun()` method to authorized all or specific users.
+
+```php
+use Laravel\Nova\Http\Requests\NovaRequest;
+use Laravel\Nova\Nova;
+use Laravel\Nova\PennantTool\PennantTool;
+
+// ...
+
+PennantTool::make()
+    ->canRun((NovaRequest $request) => Nova::user($request)->admin),
+```
