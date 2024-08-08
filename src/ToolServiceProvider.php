@@ -39,11 +39,8 @@ class ToolServiceProvider extends ServiceProvider
         }
 
         Route::middleware(config('nova.api_middleware', []))
-            ->group(function (Router $router) {
-                $router->get('/nova-vendor/pennant-features/{resource}/{resourceId}', Controllers\FeaturesController::class);
-                $router->post('/nova-vendor/pennant-features/{resource}/{resourceId}/activate', Controllers\ActivateFeatureController::class);
-                $router->post('/nova-vendor/pennant-features/{resource}/{resourceId}/deactivate', Controllers\DeactivateFeatureController::class);
-            });
+            ->prefix('/nova-vendor/pennant-features')
+            ->group(__DIR__.'/../routes/api.php');
     }
 
     /**

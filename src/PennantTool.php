@@ -39,14 +39,14 @@ class PennantTool extends ResourceTool
     }
 
     /**
-     * Set the callback used to determine if the resource tool is readonly.
+     * Set the callback used to determine if the resource tool can be updated.
      *
      * @param  (\Closure(\Laravel\Nova\Http\Requests\NovaRequest):(bool))|bool  $callback
      * @return $this
      */
-    public function readonly(Closure|bool $callback = true)
+    public function canRun(Closure|bool $callback = true)
     {
-        $this->withMeta(['readonly' => $callback]);
+        $this->withMeta(['authorizedToRun' => $callback]);
 
         return $this;
     }
