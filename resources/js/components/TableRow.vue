@@ -63,7 +63,7 @@ const showConfiguresModal = ref(false)
 
 const isActive = computed(() => props.feature.value !== false)
 const isRichFeature = computed(() => isString(props.feature.value))
-const authorizedToRun = computed(() => props.panel?.authorizedToRun ?? true)
+const authorizedToRun = computed(() => (props.panel?.authorizedToRun ?? true) && props.feature.meta.options !== false)
 const requiresConfirmPassword = computed(() => {
   const requiresConfirmation = props.panel?.requiresConfirmPassword ?? false
 
