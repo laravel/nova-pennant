@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\User;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Pennant\Feature;
 use Workbench\App\Features\PurchaseButton;
+use Workbench\App\Features\UserRole;
 
 class WorkbenchServiceProvider extends ServiceProvider
 {
@@ -28,6 +29,7 @@ class WorkbenchServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Feature::define(PurchaseButton::class);
+        Feature::define(UserRole::class);
 
         Feature::define('beta-users', fn (User $user) => ! in_array($user->email, [
             'nova@laravel.com',
