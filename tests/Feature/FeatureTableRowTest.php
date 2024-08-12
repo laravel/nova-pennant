@@ -22,7 +22,6 @@ it('can be resolved', function () {
     ]);
 });
 
-
 it('can resolve class based feature', function () {
     $row = new FeatureTableRow(UserRole::class, 'administrator');
 
