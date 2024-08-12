@@ -1,5 +1,6 @@
 providers:
   - Laravel\Nova\NovaCoreServiceProvider
+  - Laravel\Pennant\PennantServiceProvider
   - Workbench\App\Providers\NovaServiceProvider
   - Workbench\App\Providers\WorkbenchServiceProvider
 
