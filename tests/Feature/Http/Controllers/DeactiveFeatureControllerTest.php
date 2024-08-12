@@ -13,24 +13,22 @@ beforeEach(function () {
     NovaServiceProviderRegistered::dispatch();
 });
 
-it('can activate a feature', function () {
+it('can deactivate a feature', function () {
     $user = User::factory()->create();
 
-    $response = postJson("/nova-vendor/nova-pennant/users/{$user->getKey()}/activate", [
+    $response = postJson("/nova-vendor/nova-pennant/users/{$user->getKey()}/deactivate", [
         'key' => 'new-api',
-        'value' => true,
     ])->assertStatus(204);
 
-    expect(Feature::for($user)->value('new-api'))->toBeTrue();
+    expect(Feature::for($user)->value('new-api'))->toBeFalse();
 });
 
-it('can activate a rich value feature', function () {
+it('can deactivate a rich value feature', function () {
     $user = User::factory()->create();
 
-    $response = postJson("/nova-vendor/nova-pennant/users/{$user->getKey()}/activate", [
+    $response = postJson("/nova-vendor/nova-pennant/users/{$user->getKey()}/deactivate", [
         'key' => 'purchase-button',
-        'value' => 'blue-sapphire',
     ])->assertStatus(204);
 
-    expect(Feature::for($user)->value('purchase-button'))->toBe('blue-sapphire');
+    expect(Feature::for($user)->value('purchase-button'))->toBeFalse();
 });
