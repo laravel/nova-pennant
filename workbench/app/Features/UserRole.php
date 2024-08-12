@@ -9,10 +9,9 @@ class UserRole
      */
     public function resolve(mixed $scope): mixed
     {
-        return [
-            'member',
-            'moderator',
-            'administrator',
-        ];
+        return match (true) {
+            str_ends_with($scope->email, '@laravel.com') => 'administrator',
+            default => 'member',
+        };
     }
 }
