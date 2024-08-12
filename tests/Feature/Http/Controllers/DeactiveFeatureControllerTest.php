@@ -1,16 +1,18 @@
 <?php
 
-use Laravel\Nova\Events\NovaServiceProviderRegistered;
+use Laravel\Nova\Testing\Concerns\InteractsWithNova;
 use Laravel\Pennant\Feature;
 use Workbench\App\Models\User;
 
 use function Pest\Laravel\actingAs;
 use function Pest\Laravel\postJson;
+use function Pest\Laravel\withoutExceptionHandling;
+
+uses(InteractsWithNova::class);
 
 beforeEach(function () {
     actingAs(User::first());
-
-    NovaServiceProviderRegistered::dispatch();
+    withoutExceptionHandling();
 });
 
 it('can deactivate a feature', function () {
