@@ -3,7 +3,6 @@
 namespace Laravel\Nova\PennantTool;
 
 use Closure;
-use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Nova;
 use Laravel\Nova\ResourceTool;
 use Stringable;

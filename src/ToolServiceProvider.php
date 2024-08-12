@@ -2,12 +2,10 @@
 
 namespace Laravel\Nova\PennantTool;
 
-use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Nova\Events\ServingNova;
 use Laravel\Nova\Nova;
-use Laravel\Nova\PennantTool\Http\Controllers;
 
 class ToolServiceProvider extends ServiceProvider
 {

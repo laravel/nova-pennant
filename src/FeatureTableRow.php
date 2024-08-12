@@ -47,7 +47,7 @@ class FeatureTableRow implements JsonSerializable
             'type' => $type,
             'options' => match (true) {
                 is_bool($this->value) => true,
-                $type === 'class' && method_exists($instance, 'options') =>$instance->options(),
+                $type === 'class' && method_exists($instance, 'options') => $instance->options(),
                 default => false,
             },
         ];

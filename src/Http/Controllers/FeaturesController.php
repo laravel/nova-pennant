@@ -4,7 +4,6 @@ namespace Laravel\Nova\PennantTool\Http\Controllers;
 
 use Illuminate\Support\Collection;
 use Laravel\Nova\Http\Requests\NovaRequest;
-use Laravel\Nova\Nova;
 use Laravel\Nova\PennantTool\FeatureTableRow;
 use Laravel\Pennant\Feature;
 
