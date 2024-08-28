@@ -2,6 +2,7 @@
 /vendor/*
 /composer.lock
 /auth.json
+/artifacts
 
 # PHPUnit
 /coverage/*
