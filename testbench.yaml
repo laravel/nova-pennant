@@ -6,9 +6,6 @@ providers:
 migrations:
   - workbench/database/migrations
 
-seeders:
-  - Workbench\Database\Seeders\DatabaseSeeder
-
 workbench:
   start: /nova
   user: nova@laravel.com
@@ -19,7 +16,9 @@ workbench:
     - asset-publish
     - create-sqlite-db
     - db:wipe
-    - migrate:refresh
+    - migrate:refresh:
+        --seed: true
+        --seeder: Workbench\Database\Seeders\DatabaseSeeder
   assets:
     - nova-assets
   sync:
