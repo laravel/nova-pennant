@@ -3,8 +3,11 @@
 namespace Tests;
 
 use Illuminate\Foundation\Testing\LazilyRefreshDatabase;
+use Orchestra\Testbench\Attributes\WithMigration;
 use Orchestra\Testbench\Concerns\WithWorkbench;
+use Workbench\Database\Seeders\DatabaseSeeder;
 
+#[WithMigration]
 abstract class TestCase extends \Orchestra\Testbench\TestCase
 {
     use LazilyRefreshDatabase;
@@ -16,4 +19,10 @@ abstract class TestCase extends \Orchestra\Testbench\TestCase
      * @var bool
      */
     protected $enablesPackageDiscoveries = true;
+
+    /** {@inheritDoc} */
+    protected function seeder()
+    {
+        return DatabaseSeeder::class;
+    }
 }

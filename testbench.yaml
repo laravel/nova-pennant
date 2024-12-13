@@ -7,7 +7,7 @@ migrations:
   - workbench/database/migrations
 
 seeders:
-- Workbench\Database\Seeders\DatabaseSeeder
+  - Workbench\Database\Seeders\DatabaseSeeder
 
 workbench:
   start: /nova

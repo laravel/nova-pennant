@@ -7,12 +7,15 @@ use Workbench\App\Models\User;
 use function Pest\Laravel\actingAs;
 use function Pest\Laravel\postJson;
 use function Pest\Laravel\withoutExceptionHandling;
+use function Pest\Laravel\withoutMix;
 
 uses(InteractsWithNova::class);
 
 beforeEach(function () {
-    actingAs(User::first());
+    withoutMix();
     withoutExceptionHandling();
+
+    actingAs(User::first());
 });
 
 it('can activate a feature', function () {

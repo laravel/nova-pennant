@@ -7,10 +7,13 @@ use Workbench\App\Models\User;
 use function Pest\Laravel\actingAs;
 use function Pest\Laravel\postJson;
 use function Pest\Laravel\withoutExceptionHandling;
+use function Pest\Laravel\withoutMix;
 
 uses(InteractsWithNova::class);
 
 beforeEach(function () {
+    withoutMix();
+
     actingAs(User::first());
     withoutExceptionHandling();
 });
