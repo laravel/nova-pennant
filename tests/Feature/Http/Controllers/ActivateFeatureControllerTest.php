@@ -1,8 +1,8 @@
 <?php
 
+use App\Models\User;
 use Laravel\Nova\Testing\Concerns\InteractsWithNova;
 use Laravel\Pennant\Feature;
-use Workbench\App\Models\User;
 
 use function Pest\Laravel\actingAs;
 use function Pest\Laravel\postJson;

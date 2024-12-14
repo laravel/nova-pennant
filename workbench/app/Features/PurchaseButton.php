@@ -1,6 +1,6 @@
 <?php
 
-namespace Workbench\App\Features;
+namespace App\Features;
 
 use Illuminate\Support\Arr;
 

@@ -27,7 +27,7 @@
     "require-dev": {
         "larastan/larastan": "^2.4",
         "laravel/nova": "^5.0",
-        "laravel/nova-devtool": "^1.0",
+        "laravel/nova-devtool": "^1.0.1",
         "laravel/pint": "^1.17",
         "orchestra/pest-plugin-testbench": "^2.0",
         "orchestra/testbench": "^8.24|^9.2",
@@ -41,9 +41,9 @@
     "autoload-dev": {
         "psr-4": {
             "Tests\\": "tests/",
-            "Workbench\\App\\": "workbench/app/",
-            "Workbench\\Database\\Factories\\": "workbench/database/factories/",
-            "Workbench\\Database\\Seeders\\": "workbench/database/seeders/"
+            "App\\": "workbench/app/",
+            "Database\\Factories\\": "workbench/database/factories/",
+            "Database\\Seeders\\": "workbench/database/seeders/"
         }
     },
     "repositories": [

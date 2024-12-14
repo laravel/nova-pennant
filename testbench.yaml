@@ -1,24 +1,23 @@
 providers:
   - Laravel\Nova\NovaCoreServiceProvider
-  - Workbench\App\Providers\NovaServiceProvider
-  - Workbench\App\Providers\WorkbenchServiceProvider
+  - App\Providers\NovaServiceProvider
+  - App\Providers\WorkbenchServiceProvider
 
 migrations:
   - workbench/database/migrations
 
+seeders:
+  - Database\Seeders\DatabaseSeeder
+
 workbench:
   start: /nova
   user: nova@laravel.com
-  discovers:
-    factories: true
   build:
     - package:discover
     - asset-publish
     - create-sqlite-db
     - db:wipe
-    - migrate:refresh:
-        --seed: true
-        --seeder: Workbench\Database\Seeders\DatabaseSeeder
+    - migrate:refresh
   assets:
     - nova-assets
   sync:

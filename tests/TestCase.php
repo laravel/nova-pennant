@@ -3,9 +3,7 @@
 namespace Tests;
 
 use Illuminate\Foundation\Testing\LazilyRefreshDatabase;
-use Orchestra\Testbench\Attributes\WithMigration;
 use Orchestra\Testbench\Concerns\WithWorkbench;
-use Workbench\Database\Seeders\DatabaseSeeder;
 
 abstract class TestCase extends \Orchestra\Testbench\TestCase
 {
@@ -23,11 +21,5 @@ abstract class TestCase extends \Orchestra\Testbench\TestCase
     protected function shouldSeed()
     {
         return true;
-    }
-
-    /** {@inheritDoc} */
-    protected function seeder()
-    {
-        return DatabaseSeeder::class;
     }
 }

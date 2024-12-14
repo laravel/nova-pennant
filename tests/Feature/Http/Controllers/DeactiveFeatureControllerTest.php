@@ -1,8 +1,9 @@
 <?php
 
+use App\Models\User;
+use Database\Factories\UserFactory;
 use Laravel\Nova\Testing\Concerns\InteractsWithNova;
 use Laravel\Pennant\Feature;
-use Workbench\App\Models\User;
 
 use function Pest\Laravel\actingAs;
 use function Pest\Laravel\postJson;
@@ -19,7 +20,7 @@ beforeEach(function () {
 });
 
 it('can deactivate a feature', function () {
-    $user = User::factory()->create();
+    $user = UserFactory::new()->create();
 
     $response = postJson("/nova-vendor/nova-pennant/users/{$user->getKey()}/deactivate", [
         'key' => 'new-api',
@@ -29,7 +30,7 @@ it('can deactivate a feature', function () {
 });
 
 it('can deactivate a rich value feature', function () {
-    $user = User::factory()->create();
+    $user = UserFactory::new()->create();
 
     $response = postJson("/nova-vendor/nova-pennant/users/{$user->getKey()}/deactivate", [
         'key' => 'purchase-button',

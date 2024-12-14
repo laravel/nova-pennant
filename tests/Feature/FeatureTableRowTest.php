@@ -1,7 +1,7 @@
 <?php
 
+use App\Features\UserRole;
 use Laravel\Nova\PennantTool\FeatureTableRow;
-use Workbench\App\Features\UserRole;
 
 it('can be resolved', function () {
     $row = new FeatureTableRow('new-api', true);

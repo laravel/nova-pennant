@@ -1,6 +1,6 @@
 <?php
 
-namespace Workbench\App\Nova;
+namespace App\Nova;
 
 use Illuminate\Http\Request;
 use Laravel\Nova\Auth\PasswordValidationRules;
@@ -19,7 +19,7 @@ class User extends Resource
      *
      * @var class-string<\App\Models\User>
      */
-    public static $model = \Workbench\App\Models\User::class;
+    public static $model = \App\Models\User::class;
 
     /**
      * The single value that should be used to represent the resource when being displayed.
