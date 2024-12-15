@@ -1,6 +1,6 @@
 ![Nova Pennant](https://banners.beyondco.de/Nova%20Pennant.png?theme=light&packageManager=composer+require&packageName=laravel%2Fnova-pennant&pattern=cage&style=style_1&description=A+Pennant+Resource+Tool+for+Laravel+Nova&md=1&showWatermark=0&fontSize=100px&images=https%3A%2F%2Flaravel.com%2Fimg%2Flogomark.min.svg)
 
-This package makes it easy to view and manage Laravel Pennant featuers for your Laravel application inside of Nova.
+This package makes it easy to view and manage Laravel Pennant features for your Laravel application inside of Nova.
 
 ## Installation
 
@@ -49,7 +49,7 @@ public function fields(NovaRequest $request)
 
 ### Authorization to Modify Feature Values
 
-By default Nova user will not have access to activate or deactive features when user are authorized to see the resource. You need to use `canRun()` method to authorized all or specific users.
+By default, Nova users will not have access to activate or deactivate features when they are authorized to see the resource. You need to use the `canRun()` method to authorize all or specific users.
 
 ```php
 use Laravel\Nova\Http\Requests\NovaRequest;
@@ -59,12 +59,12 @@ use Laravel\Nova\PennantTool\PennantTool;
 // ...
 
 PennantTool::make()
-    ->canRun((NovaRequest $request) => Nova::user($request)->admin),
+    ->canRun(fn (NovaRequest $request) => Nova::user($request)->admin),
 ```
 
 ### Password Confirmation
 
-You can also requires user to confirm their password before activating or deactivating a feature by using `requiresConfirmPassword()` method:
+You can also require the user to confirm their password before activating or deactivating a feature by using `requiresConfirmPassword()` method:
 
 ```php
 use Laravel\Nova\PennantTool\PennantTool;
@@ -77,7 +77,7 @@ PennantTool::make()
 
 ### Rich Feature Values
 
-In order to configure rich values Nova would need to depends on class based feature and utilise `options()` method:
+In order to configure rich values Nova would need to depend on a class-based feature and utilize `options()` method:
 
 ```diff
 namespace App\Features;
