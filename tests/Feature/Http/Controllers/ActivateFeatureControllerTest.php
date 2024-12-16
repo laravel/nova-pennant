@@ -14,14 +14,14 @@ uses(InteractsWithNova::class);
 beforeEach(function () {
     withoutMix();
     withoutExceptionHandling();
-
-    actingAs(User::first());
 });
 
 it('can activate a feature', function () {
+    actingAs(User::first());
+
     $user = User::factory()->create();
 
-    $response = postJson("/nova-vendor/nova-pennant/users/{$user->getKey()}/activate", [
+    postJson("/nova-vendor/nova-pennant/users/{$user->getKey()}/activate", [
         'key' => 'new-api',
         'value' => true,
     ])->assertStatus(204);
@@ -30,12 +30,25 @@ it('can activate a feature', function () {
 });
 
 it('can activate a rich value feature', function () {
+    actingAs(User::first());
+
     $user = User::factory()->create();
 
-    $response = postJson("/nova-vendor/nova-pennant/users/{$user->getKey()}/activate", [
+    postJson("/nova-vendor/nova-pennant/users/{$user->getKey()}/activate", [
         'key' => 'purchase-button',
         'value' => 'blue-sapphire',
     ])->assertStatus(204);
 
     expect(Feature::for($user)->value('purchase-button'))->toBe('blue-sapphire');
+});
+
+it('cannot active a feature when user is not authorized to run', function () {
+    actingAs(User::factory()->create());
+
+    $user = User::factory()->create();
+
+    postJson("/nova-vendor/nova-pennant/users/{$user->getKey()}/activate", [
+        'key' => 'new-api',
+        'value' => true,
+    ])->assertStatus(403);
 });

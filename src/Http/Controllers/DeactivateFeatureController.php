@@ -22,7 +22,7 @@ class DeactivateFeatureController
             ->first();
 
         abort_if(is_null($tool), 404);
-        abort_if(value($tool->meta()['authorizedToRun'] ?? true, $request), 403);
+        abort_unless(value($tool->meta()['authorizedToRun'] ?? true, $request), 403);
 
         Feature::for($request->findModelOrFail())->deactivate($request->input('key'));
 
