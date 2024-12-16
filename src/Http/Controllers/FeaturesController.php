@@ -18,6 +18,7 @@ class FeaturesController
             ->map(fn ($value, $feature) => FeatureTableRow::make(
                 feature: $feature,
                 value: $value,
+                scope: $request->findModelOrFail(),
             ))->values();
     }
 }

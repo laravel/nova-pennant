@@ -18,7 +18,7 @@ class PurchaseButton
      */
     public function resolve(mixed $scope): mixed
     {
-        return Arr::random($this->options());
+        return Arr::random($this->options($scope));
     }
 
     /**
@@ -26,7 +26,7 @@ class PurchaseButton
      *
      * @return array<int, string>
      */
-    public function options(): array
+    public function options(mixed $scope): array
     {
         return [
             'blue-sapphire',

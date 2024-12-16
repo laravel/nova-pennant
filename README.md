@@ -77,7 +77,7 @@ PennantTool::make()
 
 ### Rich Feature Values
 
-In order to configure rich values Nova would need to depend on a class-based feature and utilize `options()` method:
+In order to configure rich values Nova would need to depend on a class-based feature and utilize `options(mixed $scope)` method:
 
 ```diff
 namespace App\Features;
@@ -86,7 +86,7 @@ class UserTier
 {
     public $name = 'user-tier';
 
-+   public function options(): array 
++   public function options(mixed $scope): array 
 +   {
 +      return ['solo', 'pro'];
 +   }

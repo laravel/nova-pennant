@@ -4,7 +4,7 @@ use App\Features\UserRole;
 use Laravel\Nova\PennantTool\FeatureTableRow;
 
 it('can be resolved', function () {
-    $row = new FeatureTableRow('new-api', true);
+    $row = new FeatureTableRow('new-api', true, 'taylor@laravel.com');
 
     expect($row->meta())->toBe([
         'type' => 'closure',
@@ -23,7 +23,7 @@ it('can be resolved', function () {
 });
 
 it('can resolve class based feature', function () {
-    $row = new FeatureTableRow(UserRole::class, 'administrator');
+    $row = new FeatureTableRow(UserRole::class, 'administrator', 'taylor@laravel.com');
 
     expect($row->meta())->toBe([
         'type' => 'class',
@@ -42,7 +42,7 @@ it('can resolve class based feature', function () {
 });
 
 it('can resolve class based feature with options', function () {
-    $row = new FeatureTableRow('purchase-button', 'tart-orange');
+    $row = new FeatureTableRow('purchase-button', 'tart-orange', 'taylor@laravel.com');
 
     expect($row->meta())->toBe([
         'type' => 'class',
