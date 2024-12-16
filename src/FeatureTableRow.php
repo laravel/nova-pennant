@@ -10,7 +10,7 @@ use Laravel\Nova\Nova;
 use Laravel\Pennant\Feature;
 
 /**
- * @method static static make(string $feature, bool|string $value)
+ * @method static static make(string $feature, bool|string $value, mixed $scope)
  */
 class FeatureTableRow implements JsonSerializable
 {
