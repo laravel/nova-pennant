@@ -1,4 +1,5 @@
 providers:
+  - Laravel\Nova\NovaServiceProvider
   - Laravel\Nova\NovaCoreServiceProvider
   - App\Providers\NovaServiceProvider
   - App\Providers\WorkbenchServiceProvider
