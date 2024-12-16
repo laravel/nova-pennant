@@ -25,7 +25,7 @@
             </p>
           </template>
           <template v-else>
-            <SelectControl v-model="feature.value" :options="featureOptions" />
+            <SelectControl v-model="form.value" :options="featureOptions" />
           </template>
         </ModalContent>
         <ModalFooter>
