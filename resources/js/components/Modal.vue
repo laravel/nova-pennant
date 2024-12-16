@@ -25,11 +25,7 @@
             </p>
           </template>
           <template v-else>
-            <SelectControl
-              :selected="feature.value"
-              @update:selected="form.value = $event"
-              :options="featureOptions"
-            />
+            <SelectControl v-model="form.value" :options="featureOptions" />
           </template>
         </ModalContent>
         <ModalFooter>
