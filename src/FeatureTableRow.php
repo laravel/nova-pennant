@@ -23,7 +23,8 @@ class FeatureTableRow implements JsonSerializable
      */
     public function __construct(
         public string $feature,
-        public bool|string $value
+        public bool|string $value,
+        public mixed $scope,
     ) {
         //
     }
@@ -47,7 +48,7 @@ class FeatureTableRow implements JsonSerializable
             'type' => $type,
             'options' => match (true) {
                 is_bool($this->value) => true,
-                $type === 'class' && method_exists($instance, 'options') => $instance->options(),
+                $type === 'class' && method_exists($instance, 'options') => $instance->options($this->scope),
                 default => false,
             },
         ];
