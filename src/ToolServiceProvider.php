@@ -14,7 +14,7 @@ class ToolServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        $this->app->booted(function () {
+        $this->booted(function () {
             $this->routes();
         });
 
