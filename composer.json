@@ -81,6 +81,10 @@
         ],
         "test": [
             "@php vendor/bin/pest"
+        ],
+        "ci": [
+            "@lint",
+            "@test"
         ]
     },
     "prefer-stable": true,
