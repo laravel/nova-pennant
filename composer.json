@@ -25,7 +25,6 @@
         "symfony/polyfill-php83": "^1.28"
     },
     "require-dev": {
-        "larastan/larastan": "^2.4",
         "laravel/nova": "^5.0",
         "laravel/nova-devtool": "^1.0.1",
         "laravel/pint": "^1.17",
