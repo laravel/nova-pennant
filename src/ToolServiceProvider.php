@@ -32,6 +32,7 @@ class ToolServiceProvider extends ServiceProvider
      */
     protected function routes(): void
     {
+        /** @phpstan-ignore method.notFound */
         if ($this->app->routesAreCached()) {
             return;
         }
