@@ -4,6 +4,9 @@
 /auth.json
 /artifacts
 
+# NPM
+/node_modules/*
+
 # PHPUnit
 /coverage/*
 /.phpunit.cache/*
