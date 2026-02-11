@@ -21,12 +21,12 @@
     "require": {
         "php": "^8.1",
         "illuminate/support": "^10.48.29|^11.44.1|^12.1.1",
-        "laravel/nova": "^5.7",
+        "laravel/nova": "^5.7.7",
         "laravel/pennant": "^1.16.1",
         "symfony/polyfill-php83": "^1.32"
     },
     "require-dev": {
-        "laravel/nova-devtool": "^1.8.8",
+        "laravel/nova-devtool": "^1.8.13",
         "laravel/pint": "^1.20",
         "orchestra/pest-plugin-testbench": "^2.0|^3.0",
         "orchestra/testbench": "^8.24|^9.2|^10.0",
