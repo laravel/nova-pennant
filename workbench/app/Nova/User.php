@@ -63,7 +63,7 @@ class User extends Resource
                 ->updateRules($this->optionalPasswordRules()),
 
             PennantTool::make()
-                ->canRun(fn ($request) => in_array($request->user()->email, ['nova@laravel.com'])),
+                ->canRun(fn ($request) => \in_array($request->user()->email, ['nova@laravel.com'])),
         ];
     }
 
