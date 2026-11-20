@@ -31,11 +31,11 @@ class WorkbenchServiceProvider extends ServiceProvider
         Feature::define(PurchaseButton::class);
         Feature::define(UserRole::class);
 
-        Feature::define('beta-users', fn (User $user) => ! in_array($user->email, [
+        Feature::define('beta-users', fn (User $user) => ! \in_array($user->email, [
             'nova@laravel.com',
         ]));
 
-        Feature::define('new-api', fn (User $user) => in_array($user->email, [
+        Feature::define('new-api', fn (User $user) => \in_array($user->email, [
             'nova@laravel.com',
         ]));
     }

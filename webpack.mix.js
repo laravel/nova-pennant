@@ -8,3 +8,4 @@ mix
   .vue({ version: 3 })
   // .css('resources/css/tool.css', 'dist')
   .nova('laravel/nova-pennant-tool')
+  .disableNotifications()
